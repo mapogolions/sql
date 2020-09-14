@@ -1,4 +1,4 @@
--- 3NF [AnnualSalary] attribute is not fully dependent upon primary key
+-- 3NF [AnnualSalary] attribute is not fully dependent on primary key
 DROP TABLE IF EXISTS [dbo].[Employee]
 
 CREATE TABLE [dbo].[Employee] (
