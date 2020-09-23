@@ -36,7 +36,8 @@ ON [em].[DepartmentId] = [dept].[DepartmentId]
 WHERE [dept].[Name] LIKE 'IT'
 GO
 
--- create virtual table that contains only IT department data (row level security) & hides private info (column level security)
+-- create virtual table that contains only IT department data (row level security)
+-- and hides private info like salary (column level security)
 SELECT * FROM vwGrantAccessITDepartment
 
 DROP TABLE IF EXISTS [dbo].[Employee]
