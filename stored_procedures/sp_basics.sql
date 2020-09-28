@@ -30,15 +30,18 @@ GO
 CREATE PROC [dbo].[spGetMetaKeysByPostId]
 @PostId INT
 AS
-SELECT [post].[PostId], [Title], [MetaKey], [MetaValue] FROM [dbo].[Post] as [post]
-INNER JOIN [dbo].[PostMeta] as [postmeta]
-ON [post].[PostId] = [postmeta].[PostId]
-WHERE [post].[PostId] = @PostId
+BEGIN
+    SELECT [post].[PostId], [Title], [MetaKey], [MetaValue] FROM [dbo].[Post] as [post]
+    INNER JOIN [dbo].[PostMeta] as [postmeta]
+    ON [post].[PostId] = [postmeta].[PostId]
+    WHERE [post].[PostId] = @PostId
+END
 GO
 
 -- pass by position
 [dbo].[spGetMetaKeysByPostId] 1
 GO
+
 -- pass by name
 [dbo].[spGetMetaKeysByPostId] @PostId = 2
 
