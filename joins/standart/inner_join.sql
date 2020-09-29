@@ -19,10 +19,10 @@ ADD CONSTRAINT UQ_PostMeta_MetaKey_PostId
 UNIQUE ([MetaKey], [PostId])
 
 INSERT INTO [dbo].[Post] ([Title], [CreatedAt])
-VALUES ('AOP', GETDATE()), ('TDD', GETDATE())
+VALUES ('AOP', GETDATE()), ('TDD', GETDATE()), ('OOP', GETDATE())
 
 INSERT INTO [dbo].[PostMeta] ([MetaKey], [MetaValue], [PostId])
-VALUES ('_field_1', '20', 1), ('_field_2', '1000', 1), ('_field_1', '100', 2)
+VALUES ('meta_key1', '20', 1), ('meta_key2', '1000', 1), ('meta_key1', '100', 2)
 
 SELECT [post].[PostId], [post].[Title], [meta].[MetaKey], [meta].[MetaValue]
 FROM [dbo].[Post] as [post] INNER JOIN [dbo].[PostMeta] as [meta]
