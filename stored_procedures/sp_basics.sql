@@ -22,7 +22,7 @@ INSERT INTO [dbo].[Post] ([Title], [CreatedAt])
 VALUES ('AOP', GETDATE()), ('TDD', GETDATE())
 
 INSERT INTO [dbo].[PostMeta] ([MetaKey], [MetaValue], [PostId])
-VALUES ('views', '20', 1), ('likes', '1000', 1), ('views', '100', 2)
+VALUES ('meta_key1', '20', 1), ('meta_key2', '1000', 1), ('meta_key1', '100', 2)
 
 DROP PROC IF EXISTS [dbo].[spGetMetaKeysByPostId]
 
