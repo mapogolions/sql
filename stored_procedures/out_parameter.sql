@@ -13,19 +13,19 @@ DROP PROC IF EXISTS [dbo].[spNumberOfEmployeesInSubordination]
 
 GO
 CREATE PROC [dbo].[spNumberOfEmployeesInSubordination]
-    @LeadName NVARCHAR(100)
+    @LeadName NVARCHAR(100),
+    @Amount INT OUT
 AS
 BEGIN
-    SELECT COUNT([em].[EmployeeId]) FROM [dbo].[Employee] as [em] INNER JOIN [dbo].[Employee] as [lead]
+    SELECT @Amount = COUNT([em].[EmployeeId]) FROM [dbo].[Employee] as [em] INNER JOIN [dbo].[Employee] as [lead]
     ON [em].[LeadId] = [lead].[EmployeeId]
     WHERE [lead].[Name] LIKE '%' + @LeadName + '%'
 END
 
 GO
-[dbo].[spNumberOfEmployeesInSubordination] @LeadName = 'Joe'
-GO
-[dbo].[spNumberOfEmployeesInSubordination] @LeadName = 'Sarah'
-
+DECLARE @Amount INT
+EXEC [dbo].[spNumberOfEmployeesInSubordination] @LeadName = 'Joe', @Amount = @Amount OUT
+SELECt @Amount as [Number of Employees]
 
 DROP PROC IF EXISTS [dbo].[spNumberOfEmployeesInSubordination]
 DROP TABLE IF EXISTS [dbo].[Employee]
