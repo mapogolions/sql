@@ -1,24 +1,24 @@
-Drop Table If Exists [dbo].[Gender]
+Drop Table If Exists dbo.Gender
 
-Create Table [dbo].[Gender] (
-    [GenderId] int Identity Primary Key,
-    [Name] nvarchar(10) Not Null Unique
+Create Table dbo.Gender (
+    GenderId int Identity Primary Key,
+    Name nvarchar(10) Not Null Unique
 )
 
-Alter Table [dbo].[Gender]
+Alter Table dbo.Gender
 Add Constraint CK_Gender_Name
-Check ([Name] In ('male', 'female'))
+Check (Name In ('male', 'female'))
 
--- Alter Table [dbo].[TableName]
+-- Alter Table dbo.TableName
 -- Add Constraint CK_TableName_Email
--- Check ([Email] Like '%@%')
+-- Check (Email Like '%@%')
 
-Insert Into [dbo].[Gender] ([Name])
+Insert Into dbo.Gender (Name)
 Values ('male'), ('female')
 
-Select * From [dbo].[Gender]
+Select * From dbo.Gender
 
 -- The INSERT statement conflicted with the CHECK constraint "CK_Gender_Name".
--- Insert Into [dbo].[Gender] ([Name]) Values ('other')
+-- Insert Into dbo.Gender (Name) Values ('other')
 
-Drop Table [dbo].[Gender]
+Drop Table dbo.Gender

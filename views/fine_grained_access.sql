@@ -29,16 +29,18 @@ DROP VIEW IF EXISTS [dbo].[vwGrantAccessITDepartment]
 
 GO
 CREATE VIEW vwGrantAccessITDepartment
-AS
-SELECT [em].[Name], [dept].[Name] as [DepartmentName] FROM [dbo].[Employee] as [em]
-INNER JOIN [dbo].[Department] as [dept]
-ON [em].[DepartmentId] = [dept].[DepartmentId]
-WHERE [dept].[Name] LIKE 'IT'
+    AS
+    SELECT [em].[Name], [dept].[Name] as [DepartmentName] FROM [dbo].[Employee] as [em]
+    INNER JOIN [dbo].[Department] as [dept]
+    ON [em].[DepartmentId] = [dept].[DepartmentId]
+    WHERE [dept].[Name] LIKE 'IT'
+
 GO
 
 -- create virtual table that contains only IT department data (row level security)
 -- and hides private info like salary (column level security)
 SELECT * FROM vwGrantAccessITDepartment
 
+DROP VIEW IF EXISTS [dbo].[vwGrantAccessITDepartment]
 DROP TABLE IF EXISTS [dbo].[Employee]
 DROP TABLE IF EXISTS [dbo].[Department]
