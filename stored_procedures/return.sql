@@ -13,19 +13,19 @@ DROP PROC IF EXISTS dbo.spGetTotalWorkersByLeadName
 
 GO
 CREATE PROC dbo.spGetTotalWorkersByLeadName
-    @LeadName NVARCHAR(100),
-    @TotalWorkers INT OUT
+    @LeadName NVARCHAR(100)
 AS
 BEGIN
-    SELECT @TotalWorkers = COUNT(em.EmployeeId)
+    -- parentheses required
+    RETURN (SELECT COUNT(em.EmployeeId)
     FROM dbo.Employee as em INNER JOIN dbo.Employee as lead
     ON em.LeadId = lead.EmployeeId
-    WHERE lead.Name LIKE '%' + @LeadName + '%'
+    WHERE lead.Name LIKE '%' + @LeadName + '%')
 END
 
 GO
 DECLARE @TotalWorkers INT
-EXEC dbo.spGetTotalWorkersByLeadName @TotalWorkers = @TotalWorkers OUT, @LeadName = 'Joe'
+EXEC @TotalWorkers = dbo.spGetTotalWorkersByLeadName @LeadName = 'Joe'
 
 SELECt @TotalWorkers as [Total Workers]
 
