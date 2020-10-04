@@ -16,15 +16,14 @@ DROP FUNCTION IF EXISTS dbo.HireInfo
 
 GO
 CREATE FUNCTION dbo.HireInfo (@HireDate DATETIME, @PointTime DATETIME)
-RETURNS NVARCHAR(100)
+RETURNS INT
 AS
 BEGIN
     DECLARE @HireInfo NVARCHAR(100)
     IF (@HireDate >= @PointTime)
-        SET @HireInfo = 'Will be hired in the future'
+        SET @HireInfo = 0
     ELSE
         BEGIN
-            DECLARE @YearOffset INT
             SET @HireInfo = DATEDIFF(YEAR, @HireDate, @PointTime) -
                 (CASE
                     WHEN (MONTH(@HireDate) >= MONTH(@PointTime)) AND
@@ -40,6 +39,8 @@ DECLARE @PointTime DATETIME
 SET @PointTime = '10/09/2020'
 
 SELECT Name, dbo.HireInfo(HireDate, @PointTime) as [Hire Info] FROM dbo.Employee
+SELECT Name, dbo.HireInfo(HireDate, @PointTime) as [Hire Info]
+FROM dbo.Employee WHERE dbo.HireInfo(HireDate, @PointTime) > 0
 
 DROP FUNCTION IF EXISTS dbo.HireInfo
 DROP TABLE IF EXISTS dbo.Employee
