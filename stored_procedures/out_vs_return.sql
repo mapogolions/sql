@@ -1,5 +1,5 @@
 -- when return value is not integer
--- when need return multiple values
+-- when need to return multiple values
 
 DROP TABLE IF EXISTS dbo.Employee
 
