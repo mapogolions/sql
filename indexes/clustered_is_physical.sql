@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS dbo.City
 CREATE TABLE dbo.City (
     CityId INT NOT NULL,
     Name NVARCHAR(100) NOT NULL,
-    Population DECIMAL NOT NULL
+    Population DECIMAL(18, 3) NOT NULL
 )
 
 ALTER TABLE dbo.City
