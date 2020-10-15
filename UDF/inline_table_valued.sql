@@ -32,6 +32,10 @@ SELECT SUM(Salary) as [Total Male Salary] FROM dbo.Employee
 GROUP BY  Gender
 HAVING Gender = 'male'
 -- OR
+SELECT SUM(Salary) as [Total Male Salary] FROM dbo.Employee
+WHERE Gender = 'male'
+GROUP BY Gender
+--OR
 SELECT SUM(Salary) as [Total Male Salary] FROM dbo.FilterEmployeesByGender('male')
 
 
