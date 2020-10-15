@@ -18,16 +18,22 @@ VALUES
     ('Bob Smith', 320.09, 'male')
 
 
-DROP FUNCTION IF EXISTS dbo.FilterByGender
+DROP FUNCTION IF EXISTS dbo.FilterEmployeesByGender
 
 GO
-CREATE FUNCTION dbo.FilterByGender (@Gender NVARCHAR(10))
+CREATE FUNCTION dbo.FilterEmployeesByGender (@Gender NVARCHAR(10))
     RETURNS TABLE
 AS
     RETURN (SELECT * FROM dbo.Employee WHERE @Gender = Gender)
 GO
 
-SELECT * FROM dbo.FilterByGender('male')
+
+SELECT SUM(Salary) as [Total Male Salary] FROM dbo.Employee
+GROUP BY  Gender
+HAVING Gender = 'male'
+-- OR
+SELECT SUM(Salary) as [Total Male Salary] FROM dbo.FilterEmployeesByGender('male')
+
 
 DROP FUNCTION IF EXISTS dbo.FilterByGender
 DROP TABLE IF EXISTS dbo.Employee
