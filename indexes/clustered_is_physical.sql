@@ -16,7 +16,7 @@ PRIMARY KEY (CityId)
 INSERT INTO dbo.City (CityId, Name, Population)
 VALUES
     (1, 'Tokyo', 13.9),
-    (2, 'New Yourk', 8.399),
+    (2, 'New York', 8.399),
     (3, 'London', 8.982),
     (4, 'Mexico', 8.918)
 
