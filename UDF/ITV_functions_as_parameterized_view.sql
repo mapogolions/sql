@@ -34,10 +34,10 @@ CREATE VIEW dbo.vwPostMetaKeys
     ON post.PostId = postmeta.PostId
 GO
 
-DROP FUNCTION IF EXISTS dbo.GetPostMetaKeys
+DROP FUNCTION IF EXISTS dbo.GetPostMetaKeysByTitle
 
 GO
-CREATE FUNCTION dbo.GetPostMetaKeys (@PostTitle NVARCHAR(100))
+CREATE FUNCTION dbo.GetPostMetaKeysByTitle (@PostTitle NVARCHAR(100))
     RETURNS TABLE
 AS
     RETURN (SELECT post.PostId, Title, MetaKey, MetaValue FROM dbo.Post as post
@@ -46,11 +46,10 @@ AS
             WHERE Title LIKE @PostTitle)
 GO
 
-
 SELECT * FROM dbo.vwPostMetaKeys WHERE Title LIKE 'aop'
-SELECT * FROM dbo.GetPostMetaKeys('aop')
+SELECT * FROM dbo.GetPostMetaKeysByTitle('aop')
 
 DROP VIEW IF EXISTS dbo.vwPostMetaKeys
-DROP FUNCTION IF EXISTS dbo.GetPostMetaKeys
+DROP FUNCTION IF EXISTS dbo.GetPostMetaKeysByTitle
 DROP TABLE IF EXISTS dbo.PostMeta
 DROP TABLE IF EXISTS dbo.Post
