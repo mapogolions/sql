@@ -26,9 +26,9 @@ VALUES ('views', '20', 1), ('likes', '1000', 1), ('views', '100', 2)
 
 DROP VIEW IF EXISTS dbo.vwPostMetaKeys
 
-GO
+GO -- View is something like saved SQL query  (view, actually, doesn't store any data.) Virtual table
 CREATE VIEW dbo.vwPostMetaKeys
-    AS
+AS
     SELECT post.PostId, Title, MetaKey, MetaValue FROM dbo.Post as post
     INNER JOIN dbo.PostMeta as postmeta
     ON post.PostId = postmeta.PostId
@@ -37,6 +37,9 @@ GO
 -- using views is much easier than using join (especially for non-it specialists)
 SELECT * FROM dbo.vwPostMetaKeys WHERE Title LIKE 'aop'
 SELECT * FROM dbo.vwPostMetaKeys WHERE Title LIKE 'tdd'
+
+GO
+sp_helptext [dbo.vwPostMetaKeys]
 
 DROP VIEW IF EXISTS dbo.vwPostMetaKeys
 DROP TABLE IF EXISTS dbo.PostMeta
