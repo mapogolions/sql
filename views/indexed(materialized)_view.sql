@@ -30,5 +30,32 @@ VALUES
     (1, 5),
     (2, 10)
 
+
+DROP VIEW IF EXISTS dbo.vwSalesInfo
+
+GO
+CREATE VIEW dbo.vwSalesInfo
+WITH SCHEMABINDING
+AS
+    SELECT
+        p.Name,
+        COUNT_BIG(*) as TotalTransactions,
+        SUM(ISNULL(Quantity * UnitPrice, 0)) as TotalSales
+    FROM dbo.Product as p INNER JOIN dbo.SoldTransaction as t
+    ON p.ProductID = t.ProductId
+    GROUP BY p.Name
+GO
+
+CREATE UNIQUE CLUSTERED INDEX UIX_vwSalesInfo_Name
+ON dbo.vwSalesInfo (Name DESC)
+
+EXEC sp_helpindex 'dbo.vwSalesInfo'
+
+SELECT * FROM dbo.vwSalesInfo
+INSERT INTO dbo.SoldTransaction (ProductId, Quantity) VALUES (2, 1) -- views are recalculated every time an INSERT / DELETE / UPDATE occurs
+-- if you have a bunch of data, the best way is to drop view, to do bulk insert and then recreate index
+SELECT * FROM dbo.vwSalesInfo
+
+DROP VIEW IF EXISTS dbo.vwSalesInfo
 DROP TABLE IF EXISTS dbo.SoldTransaction
 DROP TABLE IF EXISTS dbo.Product
