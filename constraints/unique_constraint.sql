@@ -2,7 +2,8 @@ Drop Table If Exists [dbo].[User]
 
 Create Table [dbo].[User] (
     UserId int Identity Primary Key,
-    Email nvarchar(200)
+    Email nvarchar(200) -- UNIQUE
+    -- CONSTRAINT UQ_User_Email UNIQUE ([Email])
 )
 
 Alter Table [dbo].[User]

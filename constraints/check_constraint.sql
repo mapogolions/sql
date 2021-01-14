@@ -3,6 +3,7 @@ Drop Table If Exists dbo.Gender
 Create Table dbo.Gender (
     GenderId int Identity Primary Key,
     Name nvarchar(10) Not Null Unique
+    -- CONSTRAINT CK_Gender_Name CHECK (Name In ('male', 'female'))
 )
 
 Alter Table dbo.Gender
