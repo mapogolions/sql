@@ -9,7 +9,7 @@ INSERT INTO dbo.Post
 VALUES ('AOP'), ('TDD'), ('OOP')
 
 SELECT * FROM dbo.Post
-SELECT IDENT_CURRENT('Post')
+SELECT  IDENT_CURRENT('Post') AS [Last Generted Id]
 
 -- DML
 DELETE FROM dbo.Post
@@ -18,7 +18,7 @@ INSERT INTO dbo.Post
 VALUES ('AOP'), ('TDD'), ('OOP')
 
 SELECT * FROM dbo.Post
-SELECT IDENT_CURRENT('Post')
+SELECT IDENT_CURRENT('Post') AS [Last Generated Id]
 
 -- DDL (reset identity seed)
 TRUNCATE TABLE dbo.Post
