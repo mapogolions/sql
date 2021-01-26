@@ -8,7 +8,7 @@ CREATE TABLE dbo.Employee (
 )
 
 ALTER TABLE dbo.Employee
-ADD CONSTRAINT CK_Employee_Name
+ADD CONSTRAINT CK_Employee_Gender
 CHECK (Gender IN ('male', 'female'))
 
 INSERT INTO dbo.Employee (FullName, Salary, Gender)
@@ -27,6 +27,7 @@ AS
     RETURN (SELECT * FROM dbo.Employee WHERE @Gender = Gender)
 GO
 
+SELECT SUM(Salary) as [Total Male Salary] FROM dbo.Employee WHERE Gender = 'male'
 
 SELECT SUM(Salary) as [Total Male Salary] FROM dbo.Employee
 GROUP BY  Gender

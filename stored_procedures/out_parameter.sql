@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS dbo.Employee
 
 CREATE TABLE dbo.Employee (
-    EmployeeId INT NOT NULL IDENTITY PRIMARY KEY,
+    EmployeeId INT IDENTITY PRIMARY KEY,
     Name  NVARCHAR(100) NOT NULL,
     LeadId INT NULL
 )

@@ -24,7 +24,7 @@ VALUES ('AOP', GETDATE()), ('TDD', GETDATE())
 INSERT INTO dbo.PostMeta (MetaKey, MetaValue, PostId)
 VALUES ('_field_1', '20', 1), ('_field_2', '1000', 1), ('_field_1', '100', 2)
 
-SELECT post.PostId,  COUNT(post.PostId) as [Total MetaKeys Count]
+SELECT post.PostId,  COUNT(post.PostId) as [Total MetaKeys]
 FROM dbo.Post as post INNER JOIN dbo.PostMeta as meta
 ON post.PostId = meta.PostId
 GROUP BY post.PostId

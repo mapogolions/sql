@@ -12,6 +12,24 @@ CREATE TABLE dbo.Employee (
 INSERT INTO dbo.Employee (Name, LeadId)
 VALUES ('Joe', NULL), ('John', 1), ('Sarah', 1)
 
+
+-- return value int type
+DROP PROC IF EXISTS dbo.spGetTotalCountOfEmployees
+
+GO
+CREATE PROC dbo.spGetTotalCountOfEmployees
+AS
+BEGIN
+    RETURN (SELECT COUNT(EmployeeId) FROM dbo.Employee)
+END
+GO
+
+DECLARE @TotalCountOfEmployees INT
+EXEC @TotalCountOfEmployees = dbo.spGetTotalCountOfEmployees
+SELECT @TotalCountOfEmployees as [Total Count Of Employees]
+
+
+-- return value nvarchar type
 DROP PROC IF EXISTS dbo.spGetEmployeeNameById
 
 GO
@@ -21,13 +39,16 @@ CREATE PROC dbo.spGetEmployeeNameById
 AS
 BEGIN
     SELECT @EmployeeName = Name FROM dbo.Employee WHERE EmployeeId = @EmployeeId
+    -- invalid expression
     -- RETURN (SELECT Name FROM dbo.Employee WHERE EmployeeId = @EmployeeId)
 END
 
 GO
 DECLARE @EmployeeName NVARCHAR(100)
 EXEC dbo.spGetEmployeeNameById 1, @EmployeeName OUT
-PRINT 'Employee Name => ' + @EmployeeName
+SELECT @EmployeeName as [Employee Name]
 
+
+DROP PROC IF EXISTS dbo.spGetTotalCountOfEmployees
 DROP PROC IF EXISTS dbo.spGetEmployeeNameById
 DROP TABLE IF EXISTS dbo.Employee

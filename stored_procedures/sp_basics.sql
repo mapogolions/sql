@@ -28,7 +28,7 @@ DROP PROC IF EXISTS dbo.spGetMetaKeysByPostId
 
 GO
 CREATE PROC dbo.spGetMetaKeysByPostId
-@PostId INT
+    @PostId INT
 AS
 BEGIN
     SELECT post.PostId, Title, MetaKey, MetaValue FROM dbo.Post as post
