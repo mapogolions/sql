@@ -21,7 +21,9 @@ CREATE FUNCTION dbo.GetPopulationByCityName (@CityName NVARCHAR(100))
     WITH SCHEMABINDING
 AS
 BEGIN
-    RETURN (SELECT Population FROM dbo.City WHERE Name LIKE '%' + @CityName + '%')
+    DECLARE @Population DECIMAL(18, 3)
+    SELECT @Population = Population FROM dbo.City WHERE Name = @CityName
+    RETURN @Population
 END
 GO
 
