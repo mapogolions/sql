@@ -25,20 +25,27 @@ INSERT INTO dbo.Employee (Name, City, Gender)
 
 
 SELECT City, COUNT(EmployeeId) FROM dbo.Employee
-WHERE Gender = 'female'
-GROUP BY City
-
-SELECT City, COUNT(EmployeeId) FROM dbo.Employee
 GROUP BY City, Gender
 HAVING Gender = 'female'
 
+SELECT City, COUNT(EmployeeId) FROM dbo.Employee
+WHERE Gender = 'female'
+GROUP BY City
+
 -- subtle case
--- SELECT City, COUNT(EmployeeId) FROM dbo.Employee
--- WHERE Gender = 'female' AND COUNT(EmployeeId) > 2 -- invalid expression
--- GROUP BY City
 
 SELECT City, COUNT(EmployeeId) FROM dbo.Employee
 GROUP BY City, Gender
 HAVING Gender = 'female' AND COUNT(EmployeeId) > 2
+
+-- SELECT City, COUNT(EmployeeId) FROM dbo.Employee
+-- WHERE Gender = 'female' AND COUNT(EmployeeId) > 2 -- invalid expression
+-- GROUP BY City
+
+SELECT * FROM (
+    SELECT City, COUNT(EmployeeId) as Count  FROM dbo.Employee
+    WHERE Gender = 'female'
+    GROUP BY City
+) as interim WHERE interim.Count > 1
 
 DROP TABLE IF EXISTS dbo.Employee
