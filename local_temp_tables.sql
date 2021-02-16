@@ -1,8 +1,6 @@
-DROP TABLE IF EXISTS #Heros
-
 CREATE TABLE #SessionTempTable
 (
-    HeroId INT IDENTITY(1, 1) PRIMARY KEY,
+    SessionTempTableId INT IDENTITY(1, 1) PRIMARY KEY,
     Name NVARCHAR(100) NOT NULL
 )
 
@@ -26,7 +24,7 @@ AS
 BEGIN
     CREATE TABLE #ScopedTempTable
     (
-        HeroId INT IDENTITY(1, 1) PRIMARY KEY,
+        ScopedTempTableId INT IDENTITY(1, 1) PRIMARY KEY,
         Name NVARCHAR(100) NOT NULL
     )
 
