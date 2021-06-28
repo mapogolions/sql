@@ -1,5 +1,5 @@
 -- `WHERE` clause can be used with insert, update, delete, select statements, where as `HAVING` clause can only be used with select
--- `WHERE` is used to filter rows before aggregation, where as `HAVING` clause is use to filter groups after aggregation
+-- `WHERE` is used to filter rows before aggregation, where as `HAVING` clause is used to filter groups after aggregation
 -- TIP: Try to eliminate rows that you wouldn't need, as early as possible
 
 DROP TABLE IF EXISTS dbo.Employee

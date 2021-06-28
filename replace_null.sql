@@ -25,7 +25,7 @@ FROM dbo.Employee as em LEFT JOIN dbo.Employee as mng
 ON em.ManagerId = mng.EmployeeId
 
 -- CASE
-select em.Name as Employee, (case when mng.Name is null then'No manager' else mng.Name end) as Manager
+select em.Name as Employee, (case when mng.Name is null then 'No manager' else mng.Name end) as Manager
 from dbo.Employee as em left join dbo.Employee as mng
 on em.ManagerId = mng.EmployeeId
 
