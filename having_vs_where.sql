@@ -1,3 +1,7 @@
+-- `WHERE` clause can be used with insert, update, delete, select statements, where as `HAVING` clause can only be used with select
+-- `WHERE` is used to filter rows before aggregation, where as `HAVING` clause is used to filter groups after aggregation
+-- TIP: Try to eliminate rows that you wouldn't need, as early as possible
+
 DROP TABLE IF EXISTS dbo.Employee
 
 CREATE TABLE dbo.Employee
@@ -24,7 +28,7 @@ INSERT INTO dbo.Employee (Name, City, Gender)
         , ('someone8', 'A', 'male')
 
 
-SELECT City, COUNT(EmployeeId) FROM dbo.Employee
+SELECT City, Gender, COUNT(EmployeeId) FROM dbo.Employee
 GROUP BY City, Gender
 HAVING Gender = 'female'
 
