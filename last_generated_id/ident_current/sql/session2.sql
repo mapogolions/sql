@@ -1,3 +1,4 @@
+USE TestDb
 BEGIN
     WAITFOR DELAY '00:00:04'
     SELECT GETDATE() AS [TIME], SCOPE_IDENTITY() AS [SESSION 2: Scope_Identity Returns]
