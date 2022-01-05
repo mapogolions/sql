@@ -32,6 +32,10 @@ EXEC sp_helpindex 'City'
 CREATE CLUSTERED INDEX IX_City_Population
 ON dbo.City (Population ASC)
 
+ALTER TABLE dbo.City
+ADD CONSTRAINT UQ_City_CityId
+UNIQUE (CityId)
+
 SELECT * FROM dbo.City -- physical order affected
 EXEC sp_helpindex 'City'
 
