@@ -1,0 +1,30 @@
+DROP TABLE IF EXISTS dbo.Guids
+
+-- https://stackoverflow.com/questions/29228273/mysql-select-5-rows-before-and-after-specific-row
+
+CREATE TABLE dbo.Guids
+(
+    GuidID INT IDENTITY(1, 1) PRIMARY KEY,
+    Guid NVARCHAR(36) NOT NULL
+)
+
+INSERT INTO dbo.Guids
+VALUES ('12345678-1234-1234-1234-123456789ddd'),
+    ('12345678-1234-1234-1234-123456789abd'),
+    ('12345678-1234-1234-1234-123456789abe'),
+    ('12345678-1234-1234-1234-123456789abf'),
+    ('12345678-1234-1234-1234-123456789www'),
+    ('12345678-1234-1234-1234-123456789sho')
+
+SELECT * FROM dbo.Guids
+
+SELECT TOP(2) Guid FROM dbo.Guids
+WHERE GuidID >
+    (
+        SELECT GuidID  FROM dbo.Guids
+        WHERE GUID = '12345678-1234-1234-1234-123456789abd'
+    )
+
+
+
+DROP TABLE IF EXISTS dbo.Guids
